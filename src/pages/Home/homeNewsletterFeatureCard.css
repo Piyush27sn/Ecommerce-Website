@@ -1,0 +1,24 @@
+.featureIcon {
+    font-size: 2.5rem !important;
+    color: rgb(65, 65, 65);
+}
+
+.card h6 {
+    font-weight: bold;
+    color: #ff6600;
+}
+
+.card p {
+    color: gray;
+    font-size: 0.75rem;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 10px rgb(210, 210, 210);
+    cursor: default;
+    .featureIcon {
+        font-size: 2.8rem !important;
+        transition: all 0.2s ease-in;
+    }
+    transition: all 0.2s ease-in;
+}

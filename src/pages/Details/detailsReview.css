@@ -1,0 +1,25 @@
+.detailsReview .submit {
+    color: white;
+    background-color: #ff6600 ;
+
+    border: 1px solid #ff6600;
+    border-radius: 5px;
+    padding: 10px 10px;
+
+    width: 9rem;
+
+    transition: all 0.3s ease-in;
+}
+
+.detailsReview .submitted {
+    color: #ff6600;
+    background-color: white ;
+
+    border: 1px solid #ff6600;
+    border-radius: 5px;
+    padding: 10px 10px;
+
+    width: 9rem;
+
+    transition: all 0.3s ease-in;
+}

@@ -1,0 +1,57 @@
+.popularCard {
+  border: 1px solid #cfcece;
+  border-radius: 8px;
+  padding: 1rem;
+  position: relative;
+}
+
+.popularCard img {
+  height: 7rem;
+}
+
+.popularCard p {
+    font-size: 13px;
+
+    margin-bottom: 0;
+    padding-left: 2px;
+
+    color: gray;
+}
+
+.discountedPrice {
+    font-size: 1.2rem;
+    margin-right: 0.8rem;
+}
+
+.originalPrice {
+    color: rgb(94, 94, 94);
+    text-decoration: line-through;
+}
+
+.discountBadge {
+    color: #ff6600;
+
+    font-size: 3.5rem !important;
+
+    position: absolute;
+    right: 8px;
+    top: -7.5px;
+}
+
+.discountText {
+  color: white !important;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 3px;
+  right: 24px;
+}
+
+.cardBtn {
+  background: transparent;
+  color: #ff6600;
+
+  border: 1.5px solid #ff6600;
+  border-radius: 5px;
+
+  padding: 4px 6px;
+}

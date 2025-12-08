@@ -1,0 +1,10 @@
+.listingHeading {
+    color: white;
+    background-color: #ff6600;
+
+    margin: 1rem;
+    padding: 1rem 2rem;
+    
+    border-radius: 5px;
+}
+

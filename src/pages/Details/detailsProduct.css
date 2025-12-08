@@ -1,0 +1,32 @@
+.reviews {
+    color: gray;
+}
+
+.prices h3 {
+    color: #ff6600;
+    font-weight: bold;
+}
+
+.prices h5 {
+    color: gray;
+    font-weight: 400;
+    text-decoration: line-through;
+}
+
+.buttons .btnP {
+    color: #ff6600;
+    background-color: transparent;
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 0.75rem 1rem;
+}
+
+.buttons .btnInDe {
+    margin-bottom: 0.5rem;
+}
+
+.buttons .btnInDe Button {
+    background-color: #ff6600;
+}

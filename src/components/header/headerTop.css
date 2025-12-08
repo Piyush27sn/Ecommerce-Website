@@ -1,0 +1,10 @@
+.navTopBtn {
+    border: none;
+    background-color: transparent;
+    color: gray;
+    margin-left: 1rem;
+}
+
+.headerTop {
+    font-size: 0.8rem;
+}

@@ -1,0 +1,9 @@
+.btnLocation {
+    border: 1px solid grey;
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+.locationIcon {
+    color: grey;
+}

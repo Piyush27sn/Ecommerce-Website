@@ -1,0 +1,55 @@
+.cartMain {
+    background-color: whitesmoke;
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 1rem;
+}
+
+.cartMain h2 {
+    text-align: center;
+}
+
+.cartCard {
+    background-color: white;
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 1rem;
+
+    margin-left: 8rem;
+    margin-right: 8rem;
+}
+
+.cartCard img {
+    height: 6rem;
+}
+
+.cartPageBtn {
+    background-color: #ff6600 !important;
+    width: 1rem;
+}
+
+.cartTotal {
+    text-align: right;
+    margin-right: 8rem;
+}
+
+.cartEmpty {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartEmpty h1 {
+    color: rgb(206, 205, 205);
+    font-weight: 700 !important;
+}
+
+.cartEmpty p {
+    color: gray;
+}

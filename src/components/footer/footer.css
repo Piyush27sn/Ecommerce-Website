@@ -1,0 +1,31 @@
+.footerMain {
+    cursor: default;
+}
+
+.footerMain p {
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.footerMain h4 , h6 {
+    margin-bottom: 1rem;
+}
+
+.footerMain h4 {
+    color: #ff6600;
+}
+
+.footerBottom {
+    border-top: 1px solid rgb(182, 182, 182);
+    padding-top: 1rem;
+}
+
+.footerBottom {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+
+.footerLogo {
+    width: 6rem;
+}

@@ -1,0 +1,92 @@
+.homeCarousel img {
+  border-radius: 5px;
+}
+
+.carouselText {
+  top: 100px;
+  right: 150px;
+  left: auto !important;
+  bottom: auto !important;
+  position: absolute;
+  text-align: right;
+}
+
+.carouselEmail .MuiInputBase-root {
+  height: 3rem;
+  font-size: 0.9rem;
+  padding: 1 2rem;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.carouselEmail .MuiOutlinedInput-notchedOutline {
+  border-color: #ccc;
+}
+.carouselEmail:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #888;
+}
+.carouselEmail
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border: 1.5px solid #ff6600;
+}
+
+.carouselHeading {
+    font-size: 4rem;
+    font-weight: 800;
+}
+
+
+
+.homeCatBtn button {
+    background-color: transparent;
+    border: none;
+
+    padding: 0;
+    margin: 0 1rem;
+}
+
+.homeCatBtn button:hover {
+    color: #ff6600;
+}
+
+.homeCatBtnActive {
+  color: #ff6600;
+  font-weight: 600;
+}
+
+.homeSliderAd img {
+  border-radius: 5px;
+  filter: brightness(70%);
+}
+
+.homeSliderAd img:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease-in;
+}
+
+.productAd {
+  position: relative;
+  display: inline-block;
+}
+
+.productAdBtn {
+  background-color: #ff6600;
+  color: white;
+  border: 1.5px solid #ff6600;
+  border-radius: 5px;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  padding: 6px 12px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.productAdBtn:hover {
+  padding: 7px 13px;
+  transition: all 0.1s ease-in;
+}

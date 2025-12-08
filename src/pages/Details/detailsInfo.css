@@ -1,0 +1,28 @@
+.detailsInfo {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.detailsInfo .detailsBtn {
+    background-color: transparent;
+
+    border: 1px solid black;
+    border-radius: 20px;
+
+    padding: 5px 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.detailsInfo .detailsBtnActive {
+    color: white;
+    background-color: #ff6600;
+
+    border: 1px solid #ff6600;
+    border-radius: 20px;
+
+    padding: 5px 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}

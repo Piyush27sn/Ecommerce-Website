@@ -1,0 +1,16 @@
+.notFound {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notFound h1 {
+    color: rgb(206, 205, 205);
+    font-weight: 700 !important;
+}
+
+.notFound p {
+    color: gray;
+}

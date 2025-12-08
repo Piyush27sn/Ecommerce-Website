@@ -1,0 +1,58 @@
+.productGrid {
+
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+
+}
+
+
+.productRow {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  gap: 1rem;
+}
+
+.productRow::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+
+.productCard {
+  width: 200px;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+
+}
+
+.productCard h6 {
+  font-weight: 400;
+}
+
+.productImage {
+  width: auto;
+  height: 5rem;
+  object-fit: contain;
+}
+
+.sliderButton {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 24px;
+  padding: 0px 10px 5px 10px;
+  cursor: pointer;
+}
+
+
