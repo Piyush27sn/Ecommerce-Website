@@ -1,48 +1,213 @@
 const mongoose = require("mongoose");
-const Product = require("./models/Product");
+const Product = require("./models/productModel");
 require("dotenv").config();
 
-mongoose.connect(process.env.MONGO_URI).then( async() => {
+mongoose.connect(process.env.MONGO_URI).then(async () => {
+  try {
+    // clear old products
     await Product.deleteMany();
 
-    await Product.insertMany(
-        [
-            {
-                name: "Nike Air Max",
-                price: 2200,
-                category: "Shoes",
-                ratingP: 4.9,
-                image: "nike-air-max.png",
-                featured: true
-            },
-            {
-                name: "Samsung S25",
-                price: 60000,
-                category: "Electronics",
-                ratingP: 4.8,
-                image: "samsung-s25.png",
-                featured: true
-            },
-            {
-                name: "Mix Fruit Juice",
-                price: 120,
-                category: "Drinks",
-                ratingP: 4.9,
-                image: "mix-fruit-juice.png",
-                featured: true
-            },
-            {
-                name: "Water Bottle 1L",
-                price: 80,
-                category: "Kitchen",
-                ratingP: 4.8,
-                image: "water-bottle.png",
-                featured: true
-            }
-        ]
-    );
+    //insert new products
+    await Product.insertMany([
+      {
+        id: 1,
+        name: "Nike Air Max",
+        price: 2200,
+        category: "Shoes",
+        ratingP: 4.9,
+        image: "nike-air-max.png",
+        featured: true,
+        discount: 30,
+      },
+      {
+        id: 2,
+        name: "Samsung S25",
+        price: 60000,
+        category: "Electronics",
+        ratingP: 4.8,
+        image: "samsung-s25.png",
+        featured: true,
+        discount: 15,
+      },
+      {
+        id: 3,
+        name: "Mix Fruit Juice",
+        price: 120,
+        category: "Drinks",
+        ratingP: 4.9,
+        image: "mix-fruit-juice.png",
+        featured: true,
+        discount: 5,
+      },
+      {
+        id: 4,
+        name: "Water Bottle 1L",
+        price: 80,
+        category: "Kitchen",
+        ratingP: 4.8,
+        image: "water-bottle.png",
+        featured: true,
+        discount: 22,
+      },
+      {
+        id: 5,
+        name: "Not Popular",
+        price: 80,
+        category: "Kitchen",
+        ratingP: 4.8,
+        image: "water-bottle.png",
+        featured: false,
+      },
+      {
+        id: 6,
+        name: "Britannia Cake",
+        category: "Cake & Milk",
+        quantity: 29,
+        price: 79,
+        image: "britanniacake.webp",
+        images: ["britanniacake.webp", "barcode.png", "fssai.jpg"],
+        ratingP: 3.9,
+        description: "product description",
+        vendor: "A1 Bakeries, Delhi",
+      },
+      {
+        id: 7,
+        name: "Ice Tea",
+        category: "Coffee & Tea",
+        quantity: 15,
+        price: 39,
+        image: "icetea.webp",
+        images: ["icetea.webp", "barcode.png", "fssai.jpg"],
+        ratingP: 3.7,
+        description: "product description",
+        vendor: "Tea Valley, Assam",
+      },
+      {
+        id: 8,
+        name: "Orange",
+        category: "Vegetables & Fruits",
+        quantity: 39,
+        price: 89,
+        image: "orange.jpg",
+        images: ["orange.jpg", "barcode.png", "fssai.jpg"],
+        ratingP: 4.1,
+        description: "product description",
+        vendor: "Daily Fresh Farms, Harayana",
+      },
+      {
+        id: 9,
+        name: "Buffalo Milk",
+        category: "Cake & Milk",
+        quantity: 49,
+        price: 99,
+        image: "buffalomilk.jpg",
+        images: ["buffalomilk.jpg", "barcode.png", "fssai.jpg"],
+        ratingP: 4.3,
+        description: "product description",
+        vendor: "D",
+      },
+      {
+        id: 10,
+        name: "Cow Milk",
+        category: "Cake & Milk",
+        quantity: 23,
+        price: 79,
+        image: "cowmilk.webp",
+        images: ["cowmilk.webp", "barcode.png", "fssai.jpg"],
+        ratingP: 4.8,
+        description: "product description",
+        vendor: "D",
+      },
+      {
+        id: 11,
+        name: "Cat Food",
+        category: "Pet Food",
+        quantity: 9,
+        price: 399,
+        image: "catfood.webp",
+        images: ["catfood.webp", "barcode.png", "fssai.jpg"],
+        ratingP: 3.4,
+        description: "product description",
+        vendor: "Pet Foods India, Gujarat",
+      },
+      {
+        id: 12,
+        name: "Dog Food",
+        category: "Pet Food",
+        quantity: 18,
+        price: 499,
+        image: "dogfood.webp",
+        images: ["dogfood.webp", "barcode.png", "fssai.jpg"],
+        ratingP: 3.8,
+        description: "product description",
+        vendor: "Pet Foods India, Gujarat",
+      },
+      {
+        id: 13,
+        name: "Potatoes",
+        category: "Vegetables & Fruits",
+        quantity: 89,
+        price: 19,
+        image: "potato.jpg",
+        images: ["potato.jpg", "barcode.png", "fssai.jpg"],
+        ratingP: 4.1,
+        description: "product description",
+        vendor: "Daily Fresh Farms, Harayana",
+      },
+      {
+        id: 14,
+        name: "Brown Tea",
+        category: "Coffee & Tea",
+        quantity: 4,
+        price: 25,
+        image: "browntea.webp",
+        images: ["browntea.webp", "barcode.png", "fssai.jpg"],
+        ratingP: 4.5,
+        description: "product description",
+        vendor: "Tea Valley, Assam",
+      },
+      {
+        id: 15,
+        name: "Nescafe Coffee",
+        category: "Coffee & Tea",
+        quantity: 31,
+        price: 10,
+        image: "nescafecoffee.jpeg",
+        images: ["nescafecoffee.jpeg", "barcode.png", "fssai.jpg"],
+        ratingP: 4.4,
+        description: "product description",
+        vendor: "Tea Valley, Assam",
+      },
+      {
+        id: 16,
+        name: "Spinach",
+        category: "Vegetables & Fruits",
+        quantity: 14,
+        price: 49,
+        image: "spinach.jpg",
+        images: ["spinach.jpg", "barcode.png", "fssai.jpg"],
+        ratingP: 4.1,
+        description: "product description",
+        vendor: "Daily Fresh Farms, Harayana",
+      },
+      {
+        id: 17,
+        name: "Organic Kiwi",
+        category: "Vegetables & Fruits",
+        quantity: 8,
+        price: 49,
+        image: "kiwi.webp",
+        images: ["kiwi.webp", "kiwi.webp", "barcode.png", "fssai.jpg"],
+        ratingP: 4.4,
+        description: "product description",
+        vendor: "Daily Fresh Farms, Harayana",
+      },
+    ]);
 
-    console.log("Database seeded");
+    console.log("Database seeded with updated information.");
+  } catch (error) {
+    console.log("Error seeding database", error);
+  } finally {
     mongoose.connection.close();
-    
+  }
 });
