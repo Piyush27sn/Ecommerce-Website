@@ -27,7 +27,8 @@ function App() {
           <Route path='/about' element={< About />} />
           <Route path='/listing' element={< Listing />} />
           <Route path='*' element={< NotFound />} />
-          <Route path="/details" element={<DetailsProduct />} />
+          {/* <Route path="/details" element={<DetailsProduct />} /> */}
+          <Route path="/details/:id" element={<DetailsProduct />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
         < Footer />

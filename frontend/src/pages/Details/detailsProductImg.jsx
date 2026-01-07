@@ -1,10 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./detailsProductImg.css";
-
 
 export const DetailsProductImg = ({ images = [] }) => {
   const [mainImg, setMainImg] = useState(images[0]);
   const imgRef = useRef(null);
+
+  useEffect(() => {
+    if (images.length > 0) {
+      setMainImg(`http://localhost:5000/images/${images[0]}`);
+    }
+  }, [images]);
 
   const handleMouseMove = (e) => {
     const { left, top, width, height } = imgRef.current.getBoundingClientRect();
@@ -17,31 +22,35 @@ export const DetailsProductImg = ({ images = [] }) => {
     imgRef.current.style.transformOrigin = "center";
   };
 
-
   return (
     <div className="imgContainer">
       <div className="mainImgWrapper">
-        <img 
-        ref={imgRef}
-        src={mainImg} 
-        alt="Product" 
-        className="mainImg border" 
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        />
+        {mainImg && (
+          <img
+            ref={imgRef}
+            src={mainImg}
+            alt="Product"
+            className="mainImg border"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          />
+        )}
         <div className="zoomLens" />
       </div>
 
       <div className="thumbnailRow">
-        {images.map((img, index) => (
-          <img
-            key={index}
-            src={img}
-            alt={"Thumbnail ${index + 1}"}
-            className={`thumbnail ${mainImg === img ? "active" : ""} border`}
-            onClick={() => setMainImg(img)}
-          />
-        ))}
+        {images.map((img, index) => {
+          const fullUrl = `http://localhost:5000/images/${img}`;
+          return (
+            <img
+              key={index}
+              src={fullUrl}
+              alt={`Thumbnail ${index + 1}`}
+              className={`thumbnail ${mainImg === fullUrl ? "active" : ""} border`}
+              onClick={() => setMainImg(fullUrl)}
+            />
+          );
+        })}
       </div>
     </div>
   );

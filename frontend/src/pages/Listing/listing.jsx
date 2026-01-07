@@ -2,7 +2,6 @@ import React from 'react'
 import './listing.css'
 import { Breadcrumb } from '../../components/breadcrumb/breadcrumb'
 import { Sidebar } from '../../components/sidebar/sidebar';
-import { HomeSliderProducts } from '../Home/homeSliderProducts';
 import { ListingProducts } from './listingProducts';
 import { SortButton } from './sortButton';
 
@@ -30,7 +29,7 @@ export const Listing = () => {
                 </div>
                 <div className="col-lg-9 col-md-8">
                   <div className='d-flex justify-content-end me-2'><SortButton /></div>
-                  <ListingProducts HomeSliderProducts={HomeSliderProducts} />
+                  <ListingProducts />
                 </div>
             </div>
         </div>

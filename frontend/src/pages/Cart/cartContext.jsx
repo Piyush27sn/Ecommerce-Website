@@ -1,49 +1,56 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-
-  const addToCart = (product) => {
-    console.log("✅ Adding to cart:", product); // This should now fire
-    setCartItems((prev) => {
-      if (prev.find((item) => item.id === product.id)) {
-        return prev;
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-  };
-
-  const removeFromCart = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
+  const userId = "demouser";
 
   useEffect(() => {
-    console.log("🛒 Cart updated:", cartItems);
-  }, [cartItems]);
+    fetch(`http://localhost:5000/api/cart/${userId}`)
+      .then((res) => res.json())
+      .then((data) => setCartItems(data.items || []))
+      .catch((err) => console.error("Error fetching cart:", err));
+  }, []);
 
-
-  const incrementQuantity = (id) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+  const addToCart = (product) => {
+    fetch(`http://localhost:5000/api/cart/${userId}/add`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        productId: product._id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => setCartItems(data.items))
+      .catch((err) => console.error("Error adding to cart:", err));
   };
 
-  const decrementQuantity = (id) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id && item.quantity > 0
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
+  const updateQuantity = (productId, quantity) => {
+    fetch(`http://localhost:5000/api/cart/${userId}/update`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ productId, quantity }),
+    })
+      .then((res) => res.json())
+      .then((data) => setCartItems(data.items));
+  };
+
+  const removeFromCart = (productId) => {
+    fetch(`http://localhost:5000/api/cart/${userId}/remove/${productId}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => setCartItems(data.items));
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, incrementQuantity, decrementQuantity }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, updateQuantity, removeFromCart }}
+    >
       {children}
     </CartContext.Provider>
   );

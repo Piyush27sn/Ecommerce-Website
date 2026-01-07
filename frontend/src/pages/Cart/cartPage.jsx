@@ -3,9 +3,10 @@ import "./cartPage.css";
 import { CartContext } from "./cartContext";
 import { Box, Button, Typography } from "@mui/material";
 
+
 export const CartPage = () => {
-  const { cartItems, removeFromCart, incrementQuantity, decrementQuantity } =
-    useContext(CartContext);
+  
+  const { cartItems, addToCart, updateQuantity, removeFromCart } = useContext(CartContext);
 
   const totalAmount = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -25,13 +26,13 @@ export const CartPage = () => {
       ) : (
         <div className="row">
           {cartItems.map((item) => (
-            <div key={item.id} className="col-lg-12 col-md-12 col-sm-12 g-3">
+            <div key={item.productId} className="col-lg-12 col-md-12 col-sm-12 g-3">
               <div className="cartCard d-flex justify-content-center">
                 <div className="container">
                   <div className="row">
 
                     <div className="col-lg-4 col-sm-12">
-                      <img src={item.image} alt={item.name} />
+                      <img src={`http://localhost:5000/images/${item.image}`} alt={item.name} />
                     </div>
 
                     <div className="col-lg-8 col-sm-12">
@@ -42,7 +43,7 @@ export const CartPage = () => {
                           <Button
                             variant="contained"
                             className="cartPageBtn"
-                            onClick={() => decrementQuantity(item.id)}
+                            onClick={() => updateQuantity(item.productId, item.quantity - 1)}
                             sx={{
                               minWidth: "32px",
                               width: "32px",
@@ -60,7 +61,7 @@ export const CartPage = () => {
                           <Button
                             variant="contained"
                             className="cartPageBtn"
-                            onClick={() => incrementQuantity(item.id)}
+                            onClick={() => updateQuantity(item.productId, item.quantity + 1)}
                             sx={{
                               minWidth: "32px",
                               width: "32px",
@@ -72,7 +73,7 @@ export const CartPage = () => {
                         </Box>
                         <button
                           className="cardBtn"
-                          onClick={() => removeFromCart(item.id)}
+                          onClick={() => removeItem(item.productId)}
                         >
                           Remove
                         </button>

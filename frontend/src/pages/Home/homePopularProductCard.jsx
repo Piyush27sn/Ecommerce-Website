@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
-// import { HomeSliderProducts } from "./homeSliderProducts";
+import React, { useState, useEffect, useContext } from "react";
+import { CartContext } from "../Cart/cartContext";
+
 import "./homePopularProductCard.css";
 import { StarRating } from "./starRating";
 import { TurnedInSharp } from "@mui/icons-material";
 
 export const HomePopularProductCard = () => {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/products/popular")
@@ -44,7 +46,7 @@ export const HomePopularProductCard = () => {
                   </h6>
                   <h6 className="originalPrice">₹{product.price}</h6>
                 </div>
-                <button className="cardBtn">Add to cart</button>
+                <button className="cardBtn" onClick={() => addToCart(product)} >Add to cart</button>
               </div>
             </div>
           ))

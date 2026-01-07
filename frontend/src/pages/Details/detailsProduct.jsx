@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./detailsProduct.css";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { DetailsInfo } from "./detailsInfo";
 import { DetailsProductImg } from "./detailsProductImg";
@@ -12,6 +12,9 @@ import { FavoriteBorderOutlined } from "@mui/icons-material";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import { ShareOutlined } from "@mui/icons-material";
 
+import { useContext } from "react";
+import { CartContext } from "../Cart/cartContext";
+
 
 const DetailsBreadcrumb = [
   { label: "Home", href: "/" },
@@ -20,18 +23,22 @@ const DetailsBreadcrumb = [
 ];
 
 export const DetailsProduct = () => {
-  const { state } = useLocation();
-  const product = state?.product;
-
-  if (!product) return <p>Product not found</p>;
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    const breadcrumb = document.getElementById("breadcrumb");
-    if (breadcrumb) {
-      breadcrumb.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
+    fetch(`http://localhost:5000/api/products/${id}`)
+    .then((res) => res.json())
+    .then((data) => setProduct(data))
+    .catch((err) => console.error("Error fetching product: ", err));
+  }, [id]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behaviour: "smooth "});
+  }, [id]);
+
+  if (!product) return <p>There was an error while loading the product.</p>;
 
 
   return (
@@ -61,7 +68,7 @@ export const DetailsProduct = () => {
             <div className="mt-4 buttons container">
               <div className="row">
                 <div className="col-lg-6 col-sm-6">
-                  <button className="btnP">
+                  <button className="btnP" onClick={() => addToCart(product)}>
                     <ShoppingCartOutlined /> Add to cart
                   </button>
                 </div>

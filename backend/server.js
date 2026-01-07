@@ -21,11 +21,14 @@ app.get("/", (req, res) => {
 const productRoutes = require("./routes/productRoutes");
 app.use("/api/products", productRoutes);
 
-// const categoryRoutes = require("./routes/categoryRoutes");
-// app.use("/api/categories", categoryRoutes);
-
 
 app.use("/images", express.static("public/images"));
+
+
+app.use("/api/products", productRoutes);
+
+
+app.use("/api/cart", require("./routes/cartRoutes"));
 
 
 const PORT = 5000;
