@@ -45,7 +45,7 @@ exports.createProduct = async (req, res) => {
 // GET ALL PRODUCTS
 exports.getProducts = async (req, res) => {
   try {
-    const products = await Product.find().populate("category", "name slug");
+    const products = await Product.find();
     res.json(products);
   } catch (error) {
     console.error("Error fetching products:", error);

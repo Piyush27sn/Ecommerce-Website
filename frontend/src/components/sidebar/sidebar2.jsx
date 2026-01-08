@@ -9,12 +9,12 @@ import { FilterAltOutlined } from "@mui/icons-material";
 
 const theme = createTheme();
 
-export const Sidebar2 = () => {
+export const Sidebar2 = ({value, onPriceChange}) => {
   return (
     <div className="sidebar2 border">
       <h2>Filter by Price</h2>
       <ThemeProvider theme={theme}>
-        <PriceRangeSlider />
+        <PriceRangeSlider value={value} onChange={onPriceChange} />
       </ThemeProvider>
       <div>
         <Checkbox1 />

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./sortButton.css";
 
-export const SortButton = () => {
+export const SortButton = ({ onSortChange }) => {
   const [selected, setSelected] = useState("Select Category");
 
   const handleSelect = (value) => {
     setSelected(value);
+    onSortChange(value);
   };
 
   return (

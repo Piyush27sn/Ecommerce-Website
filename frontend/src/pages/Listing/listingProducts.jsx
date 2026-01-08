@@ -6,16 +6,29 @@ import { TurnedInSharp } from "@mui/icons-material";
 import { CartContext } from "../Cart/cartContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { SortButton } from "./sortButton";
 
-export const ListingProducts = () => {
+export const ListingProducts = ({ filterProducts }) => {
   const [products, setProducts] = useState([]);
+  const [sortedProducts, setSortedProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error("Error fetching products: ", err));
-  }, []);
+    // Only fetch if no products are passed from parent
+    if (!filterProducts || filterProducts.length === 0) {
+      fetch("http://localhost:5000/api/products")
+        .then((res) => res.json())
+        .then((data) => {
+          setProducts(data);
+          setSortedProducts(data);
+        })
+        .catch((err) => console.error("Error fetching products: ", err));
+    } else {
+      // Use filtered products from parent
+      setProducts(filterProducts);
+      setSortedProducts(filterProducts);
+    }
+  }, [filterProducts]);
+
 
   const { addToCart } = useContext(CartContext);
   console.log("Context addToCart:", addToCart);
@@ -23,53 +36,79 @@ export const ListingProducts = () => {
   const navigate = useNavigate();
 
   const handleViewMore = (product) => {
-    // navigate("/details", { state: { product } });
     navigate(`/details/${product._id}`);
 
   };
 
+
+  const handleSortChange = (option) => {
+    let sorted = [...products];
+    switch (option) {
+      case "Price: Low to High":
+        sorted.sort((a,b) => a.price - b.price);
+        break;
+      case "Price: High to Low":
+        sorted.sort((a,b) => b.price - a.price);
+        break;
+      case "Rating":
+        sorted.sort((a,b) => b.ratingP - a.ratingP);
+        break;
+      case "Featured":
+        sorted = products.filter((p) => p.featured);
+        break;
+      default:
+        sorted = products;
+    }
+    setSortedProducts(sorted);
+  }
+
+
   return (
-    <div className="container">
-      <div className="row">
-        {products.map((product) => (
-          <div key={product._id} className="col-lg-4 col-md-6 col-sm-12 g-3">
-            <div className="popularCard">
-              {product.discount > 0 && (
-                <>
-                  <TurnedInSharp className="discountBadge" />
-                  <h6 className="discountText">
-                    {product.discount}%<br />
-                    off
-                  </h6>
-                </>
-              )}
-              <div className="d-flex justify-content-center pb-2">
-                <img src={`http://localhost:5000/images/${product.image}`} />
-              </div>
-              <p>{product.category} </p>
-              <h3> {product.name} </h3>
-              <StarRating rating={product.ratingP} />
-              <div className="d-flex">
-                <h6 className="discountedPrice">
-                  {" "}
-                  ₹{product.price -
-                    (product.price * product.discount) / 100}{" "}
+  <div className="container">
+    {/* Pass the callback into SortButton */}
+    <SortButton onSortChange={handleSortChange} />
+
+    <div className="row">
+      {sortedProducts.map((product) => (
+        <div key={product._id} className="col-lg-4 col-md-6 col-sm-12 g-3">
+          <div className="popularCard">
+            {product.discount > 0 && (
+              <>
+                <TurnedInSharp className="discountBadge" />
+                <h6 className="discountText">
+                  {product.discount}%<br />
+                  off
                 </h6>
-                <h6 className="originalPrice"> ₹{product.price} </h6>
-              </div>
-              <button className="cardBtn" onClick={() => addToCart(product)}>
-                Add to cart
-              </button>
-              <button
-                className="cardBtn ms-2"
-                onClick={() => handleViewMore(product)}
-              >
-                View more
-              </button>
+              </>
+            )}
+            <div className="d-flex justify-content-center pb-2">
+              <img
+                src={`http://localhost:5000/images/${product.image}`}
+                alt={product.name}
+              />
             </div>
+            <p>{product.category}</p>
+            <h3>{product.name}</h3>
+            <StarRating rating={product.ratingP} />
+            <div className="d-flex">
+              <h6 className="discountedPrice">
+                ₹{product.price - (product.price * product.discount) / 100}
+              </h6>
+              <h6 className="originalPrice">₹{product.price}</h6>
+            </div>
+            <button className="cardBtn" onClick={() => addToCart(product)}>
+              Add to cart
+            </button>
+            <button
+              className="cardBtn ms-2"
+              onClick={() => handleViewMore(product)}
+            >
+              View more
+            </button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  );
+  </div>
+);
 };

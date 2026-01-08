@@ -1,27 +1,34 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { useState } from "react";
+
 
 function valuetext(value) {
   return `${value}`;
 }
 
-export const PriceRangeSlider = () => {
-  const [value, setValue] = React.useState([1, 200]);
+export const PriceRangeSlider = ({ value, onChange }) => {
+
+  const [internalValue, setInternalValue] = React.useState(value);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setInternalValue(newValue);
+    onChange(event, newValue);
   };
+
+  React.useEffect(() => {
+  setInternalValue(value);
+}, [value]);
+
 
   return (
     <Box sx={{ width: 200, mt: 2 }}>
       <Slider
-        value={value}
+        value={internalValue}
         onChange={handleChange}
         valueLabelDisplay="off"
-        min={1}
-        max={1000}
+        min={10}
+        max={60000}
         getAriaValueText={valuetext}
         sx={{
           color: "blue",
@@ -39,7 +46,7 @@ export const PriceRangeSlider = () => {
         }}
       />
       <Box sx={{ mb: 2, fontWeight: "bold", textAlign: "center" }}>
-        From: ₹{value[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To: ₹{value[1]}
+        From: ₹{internalValue[0]} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To: ₹{internalValue[1]}
       </Box>
     </Box>
   );

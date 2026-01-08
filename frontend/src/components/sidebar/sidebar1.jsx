@@ -12,7 +12,7 @@ import Badge from "react-bootstrap/Badge";
 export const Sidebar1 = () => {
   return (
     <div className="sidebar1 border">
-        <h2>Category</h2>
+        <h2>Categories</h2>
         <ul>
           <li>
             <button className="sidebarCatBtnWrapper">
