@@ -1,11 +1,10 @@
 const express = require("express");
 const cors = require("cors")
-
 require("dotenv").config();
 const connectDB = require("./config/db");
 
-const app = express();
 
+const app = express();
 app.use(cors());
 app.use(express.json());
 
@@ -19,16 +18,12 @@ app.get("/", (req, res) => {
 
 
 const productRoutes = require("./routes/productRoutes");
+// const authRoutes = require("./routes/auth.js");
+
 app.use("/api/products", productRoutes);
-
-
 app.use("/images", express.static("public/images"));
-
-
-app.use("/api/products", productRoutes);
-
-
 app.use("/api/cart", require("./routes/cartRoutes"));
+app.use("/api/auth", require("./routes/auth"));
 
 
 const PORT = 5000;
