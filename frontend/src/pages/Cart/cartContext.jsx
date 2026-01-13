@@ -4,19 +4,33 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const userId = "demouser";
+  
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/cart/${userId}`)
+    if (!token) return; // dont fetch if not logged in
+
+    fetch(`http://localhost:5000/api/cart/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setCartItems(data.items || []))
-      .catch((err) => console.error("Error fetching cart:", err));
-  }, []);
+      .catch((err) => {
+        console.error("Error fetching cart:", err);
+        setCartItems([]); //fallback
+      });
+  }, [token]);
 
   const addToCart = (product) => {
-    fetch(`http://localhost:5000/api/cart/${userId}/add`, {
+    const token = localStorage.getItem("token");
+    fetch(`http://localhost:5000/api/cart/add`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         productId: product._id,
         name: product.name,
@@ -30,9 +44,12 @@ export const CartProvider = ({ children }) => {
   };
 
   const updateQuantity = (productId, quantity) => {
-    fetch(`http://localhost:5000/api/cart/${userId}/update`, {
+    fetch(`http://localhost:5000/api/cart/update`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ productId, quantity }),
     })
       .then((res) => res.json())
@@ -40,8 +57,12 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (productId) => {
-    fetch(`http://localhost:5000/api/cart/${userId}/remove/${productId}`, {
+    fetch(`http://localhost:5000/api/cart/remove/${productId}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => setCartItems(data.items));

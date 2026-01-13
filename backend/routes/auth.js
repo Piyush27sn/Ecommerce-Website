@@ -1,10 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-// register route
+
+// REGISTER route
 router.post("/register", async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -35,6 +37,44 @@ router.post("/register", async (req, res) => {
 
     } catch (err) {
         console.error( "Register error: ", err );
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+
+// LOGIN route
+router.post("/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // 1. find user
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).json({ error: "Invalid credentials" });
+
+        // 2. compare password
+        const isMatch = await bcrypt.compare( password, user.passwordHash );
+        if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
+
+        // 3. generate JWT
+        const token = jwt.sign(
+            { id: user._id, email: user.email },
+            process.env.JWT_SECRET ,
+            { expiresIn: "1d" }
+        );
+
+        // 4. respond with token + user info
+        res.json(
+            {
+                token,
+                user: {
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    role: user.role,
+                },
+            }
+        );
+    } catch (err) {
         res.status(500).json({ error: "Server error" });
     }
 });

@@ -8,7 +8,7 @@ export const CartPage = () => {
   
   const { cartItems, addToCart, updateQuantity, removeFromCart } = useContext(CartContext);
 
-  const totalAmount = cartItems.reduce(
+  const totalAmount = (cartItems || []).reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
@@ -18,7 +18,7 @@ export const CartPage = () => {
       { totalAmount != 0 && (
         <h2 className="pt-2">Your Cart</h2>
       )}
-      {cartItems.length === 0 ? (
+      { !cartItems || cartItems.length === 0 ? (
         <div className="cartEmpty">
           <h1>Your cart is empty</h1>
           <p>To go back to home page, <a href="/">click here.</a></p>
@@ -73,7 +73,7 @@ export const CartPage = () => {
                         </Box>
                         <button
                           className="cardBtn"
-                          onClick={() => removeItem(item.productId)}
+                          onClick={() => removeFromCart(item.productId)}
                         >
                           Remove
                         </button>
