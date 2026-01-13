@@ -13,7 +13,7 @@ import { NotFound } from './pages/NotFound/notFound.jsx';
 import { DetailsProduct } from './pages/Details/detailsProduct.jsx'; 
 import { CartPage } from './pages/Cart/cartPage.jsx';
 import { CartProvider } from './pages/Cart/cartContext.jsx';
-import { Login } from './components/login/login.jsx';
+import { Login } from './components/login-logout/login.jsx';
 
 
 function Layout() {

@@ -12,6 +12,9 @@ import { Cart } from "./navLinkBtn/cart";
 import { CompareIt } from "./navLinkBtn/compare";
 import { Wishlist } from "./navLinkBtn/wishlist";
 import { Account } from "./navLinkBtn/account";
+import { Logout } from "../login-logout/logout";
+import { useNavigate } from "react-router-dom";
+import { LoginBtn } from "../login-logout/loginBtn";
 
 export const Header = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -24,6 +27,10 @@ export const Header = () => {
   const filteredCategories = categories.filter((cat) =>
     cat.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
 
   return (
     <>
@@ -55,6 +62,7 @@ export const Header = () => {
                 <li className="nav-item dropdown">
                   <div className="container">
                     <div className="row">
+
                       <div className="col-4">
                         <a
                           className="nav-link dropdown-toggle"
@@ -190,17 +198,12 @@ export const Header = () => {
                   <Location />
                 </li>
 
-                <li className="nav-item ps-4">
-                  <a className="nav-link active" aria-current="page" href="#">
-                    <CompareIt />
-                  </a>
-                </li>
+                
                 <li className="nav-item">
                   <a className="nav-link" href="#">
                     <Wishlist />
                   </a>
                 </li>
-
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="#">
                     <Cart />
@@ -211,6 +214,19 @@ export const Header = () => {
                     <Account />
                   </a>
                 </li>
+                <li className="nav-item ps-4">
+                  { token ? (
+                      <a className="nav-link active" aria-current="page" href="/">
+                        <Logout />
+                      </a>
+                    ) : (
+                      <a  className="nav-link active" aria-current="page" href="/login">
+                        <LoginBtn />
+                      </a>
+                    )
+                  }
+                </li>
+
               </ul>
             </div>
           </div>

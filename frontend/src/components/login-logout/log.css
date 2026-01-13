@@ -1,0 +1,14 @@
+.logBtn {
+    color: white;
+    background-color: #ff6600;
+
+    border: 1px solid #ff6600;
+    border-radius: 5px;
+    
+    padding: 8px 10px;
+}
+
+.logIcon {
+    color: white !important;
+    padding-right: 3px !important;
+}
