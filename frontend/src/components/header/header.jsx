@@ -38,7 +38,7 @@ export const Header = () => {
 
         < HeaderTop />
 
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
             <a className="navbar-brand" href="#">
               <img src={logo} className="navLogo" />

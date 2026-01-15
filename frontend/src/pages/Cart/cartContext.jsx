@@ -5,9 +5,9 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
-  useEffect(() => {
+  const loadCart = () => {
     if (!token) return; // dont fetch if not logged in
 
     fetch(`http://localhost:5000/api/cart/`, {
@@ -21,6 +21,10 @@ export const CartProvider = ({ children }) => {
         console.error("Error fetching cart:", err);
         setCartItems([]); //fallback
       });
+  };
+
+  useEffect( () => {
+    loadCart();
   }, [token]);
 
   const addToCart = (product) => {
@@ -39,7 +43,9 @@ export const CartProvider = ({ children }) => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => setCartItems(data.items))
+      .then((data) => {
+        setCartItems(data.items)
+      })
       .catch((err) => console.error("Error adding to cart:", err));
   };
 
@@ -70,7 +76,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, updateQuantity, removeFromCart }}
+      value={{ cartItems, addToCart, updateQuantity, removeFromCart, loadCart, setToken }}
     >
       {children}
     </CartContext.Provider>

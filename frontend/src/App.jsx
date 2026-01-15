@@ -14,11 +14,14 @@ import { DetailsProduct } from './pages/Details/detailsProduct.jsx';
 import { CartPage } from './pages/Cart/cartPage.jsx';
 import { CartProvider } from './pages/Cart/cartContext.jsx';
 import { Login } from './components/login-logout/login.jsx';
+import { PrivateRoute } from './components/privateRoute.jsx';
+import { Register } from './components/login-logout/register.jsx';
 
 
 function Layout() {
   const location = useLocation();
-  const hideHeaderFooter = location.pathname === "/login";
+  const hideHeaderFooter = 
+  location.pathname === "/login" || location.pathname === "/register";
 
   return (
     <>
@@ -28,10 +31,17 @@ function Layout() {
           <Route path='/about' element={< About />} />
           <Route path='/listing' element={< Listing />} />
           <Route path='*' element={< NotFound />} />
-          {/* <Route path="/details" element={<DetailsProduct />} /> */}
           <Route path="/details/:id" element={<DetailsProduct />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route
+            path="/cart"
+            element={
+              <PrivateRoute>
+                <CartPage />
+              </PrivateRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       {!hideHeaderFooter && <Footer />}
     </>

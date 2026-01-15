@@ -28,7 +28,7 @@ export const HeaderBottom = () => {
               </div>
             </div>
 
-            <nav className="col-lg-8 navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="col-lg-8 navbar navbar-expand-lg navbar-light bg-light navBottomMidList">
               <div className="container-fluid">
                 <button
                   className="navbar-toggler"
