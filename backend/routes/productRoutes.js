@@ -9,11 +9,9 @@ const {
   deleteProduct,
 } = require("../controllers/productController");
 
+// CRUD routes
 router.post("/", createProduct);
-router.get("/", getProducts);
-
-
-// Extra routes
+router.get("/", getProducts); // ✅ search logic will live inside controller
 router.get("/popular", async (req, res) => {
   try {
     const products = await Product.find({ featured: true });
@@ -23,24 +21,8 @@ router.get("/popular", async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
-
-
-router.get("/:id", async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json({ message: "Product not found" });
-    res.json(product);
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
-})
-
-
 router.get("/:id", getProductById);
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
-
-
-
 
 module.exports = router;

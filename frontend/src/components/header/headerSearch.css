@@ -1,0 +1,39 @@
+.searchResults {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.searchResultItem:hover {
+  background: #f5f5f5;
+}
+
+.searchImg{
+    height: 40px;
+    width: 40px;
+
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+}
+
+.headerSearchItem {
+    cursor: pointer;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgb(220, 216, 216);
+}
+
+.headerSearchItem:hover {
+    background-color: whitesmoke;
+}

@@ -7,23 +7,19 @@ exports.createProduct = async (req, res) => {
   try {
     const { name, price, description, category } = req.body;
 
-    // Validate required fields
     if (!name || !price || !category) {
       return errorResponse(res, 400, "Name, price, and category are required");
     }
 
-    // Validate category ID format
     if (!mongoose.Types.ObjectId.isValid(category)) {
       return errorResponse(res, 400, "Invalid category ID");
     }
 
-    // Check if category exists
     const categoryExists = await Category.findById(category);
     if (!categoryExists) {
       return errorResponse(res, 404, "Category not found");
     }
 
-    // Create product
     const product = await Product.create({
       name: name.trim(),
       price,
@@ -42,10 +38,20 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-// GET ALL PRODUCTS
+// GET ALL PRODUCTS (with optional search)
 exports.getProducts = async (req, res) => {
+  const search = req.query.search?.trim() || "";
+
   try {
-    const products = await Product.find();
+    let products;
+    if (search.length >= 1) {
+      products = await Product.find({
+        name: { $regex: search, $options: "i" },
+      }).select("id name image");
+    } else {
+      products = await Product.find(); // return all products if no search
+    }
+
     res.json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -56,7 +62,10 @@ exports.getProducts = async (req, res) => {
 // GET SINGLE PRODUCT BY ID
 exports.getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id).populate("category", "name slug");
+    const product = await Product.findById(req.params.id).populate(
+      "category",
+      "name slug"
+    );
     if (!product) {
       return errorResponse(res, 404, "Product not found");
     }

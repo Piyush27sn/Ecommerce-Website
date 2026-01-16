@@ -15,6 +15,7 @@ import { Account } from "./navLinkBtn/account";
 import { Logout } from "../login-logout/logout";
 import { useNavigate } from "react-router-dom";
 import { LoginBtn } from "../login-logout/loginBtn";
+import { HeaderSearch } from "./headerSearch";
 
 export const Header = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -178,7 +179,8 @@ export const Header = () => {
                       </div>
 
                       <div className="col-8">
-                        <form className="d-flex" role="search">
+                        <HeaderSearch />
+                        {/* <form className="d-flex" role="search">
                           <input
                             className="form-control me-2"
                             type="search"
@@ -188,7 +190,7 @@ export const Header = () => {
                           <button className="searchBtn" type="submit">
                             <SearchIcon />
                           </button>
-                        </form>
+                        </form> */}
                       </div>
                     </div>
                   </div>
