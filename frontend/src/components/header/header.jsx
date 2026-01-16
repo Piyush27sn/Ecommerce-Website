@@ -9,7 +9,6 @@ import { HeaderTop } from "./headerTop";
 import { HeaderBottom } from "./headerBottom";
 
 import { Cart } from "./navLinkBtn/cart";
-import { CompareIt } from "./navLinkBtn/compare";
 import { Wishlist } from "./navLinkBtn/wishlist";
 import { Account } from "./navLinkBtn/account";
 import { Logout } from "../login-logout/logout";
@@ -41,7 +40,7 @@ export const Header = () => {
 
         <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/">
               <img src={logo} className="navLogo" />
             </a>
             <button
@@ -180,18 +179,8 @@ export const Header = () => {
 
                       <div className="col-8">
                         <HeaderSearch />
-                        {/* <form className="d-flex" role="search">
-                          <input
-                            className="form-control me-2"
-                            type="search"
-                            placeholder="Search for items..."
-                            aria-label="Search"
-                          ></input>
-                          <button className="searchBtn" type="submit">
-                            <SearchIcon />
-                          </button>
-                        </form> */}
                       </div>
+
                     </div>
                   </div>
                 </li>

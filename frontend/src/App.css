@@ -3,3 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.toastNotif {
+    color: rgb(77, 76, 76);
+    font-weight: bold;
+    border: 2px solid #ff6600
+}

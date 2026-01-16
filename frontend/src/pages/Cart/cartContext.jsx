@@ -1,4 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
+import { Toast } from "bootstrap";
+
 
 export const CartContext = createContext();
 
@@ -47,6 +49,10 @@ export const CartProvider = ({ children }) => {
         setCartItems(data.items)
       })
       .catch((err) => console.error("Error adding to cart:", err));
+
+      const toastEl = document.getElementById("cartToast");
+      const toast = new Toast(toastEl);
+      toast.show();
   };
 
   const updateQuantity = (productId, quantity) => {
