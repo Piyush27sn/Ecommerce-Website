@@ -30,32 +30,22 @@ export const Account = () => {
         <ul className="dropdown-menu dropdown-menu-end">
           <li>
             <a className="dropdown-item" href="#">
-              <AccountBoxOutlined className="accountIcon" />My Account
+              <AccountBoxOutlined className="accountIcon" />Login Now
             </a>
           </li>
           <li>
             <a className="dropdown-item" href="#">
-              <TrackChangesOutlined className="accountIcon" />Order Tracking
+              <TrackChangesOutlined className="accountIcon" />New User signin
             </a>
           </li>
           <li>
             <a className="dropdown-item" href="#">
-              <BadgeOutlined className="accountIcon" />My Voucher
+              <BadgeOutlined className="accountIcon" />My Wishlist
             </a>
           </li>
           <li>
             <a className="dropdown-item" href="#">
-              <FavoriteBorderOutlined className="accountIcon" />My Wishlist
-            </a>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#">
-              <Settings className="accountIcon" />Settings
-            </a>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#">
-              <LogoutOutlined className="accountIcon" />Sign Out
+              <FavoriteBorderOutlined className="accountIcon" />My Cart
             </a>
           </li>
         </ul>

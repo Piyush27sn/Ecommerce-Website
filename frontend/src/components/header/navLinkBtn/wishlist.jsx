@@ -1,33 +1,33 @@
-import React, { useState } from "react";
-import { FavoriteBorder } from "@mui/icons-material";  
+import React, { useContext, useState } from "react";
+import { FavoriteBorder } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import "./cart.css";
+import { Link } from "react-router-dom";
+import { WishlistContext } from "../../../pages/Wishlist/wishlistContext";
 
 export const Wishlist = () => {
-  const [wishlistCount, setWishlistCount] = useState(0);
-
-  const addItemToWishlist = () => {
-    setWishlistCount((prev) => prev + 1);
-  };
+  const { wishlist } = useContext(WishlistContext);
 
   return (
     <div>
-      <Badge
-        badgeContent={wishlistCount}
-        sx={{
-          "& .MuiBadge-badge": {
-            backgroundColor: "#ff6600",
-            color: "#fff",
-            fontSize: "0.75rem",
-          },
-        }}
-      >
-        <FavoriteBorder className="cartIcon" />
-      </Badge>
+      <Link to="/wishlist">
+        <Badge
+          badgeContent={wishlist.length}
+          sx={{
+            "& .MuiBadge-badge": {
+              backgroundColor: "#ff6600",
+              color: "#fff",
+              fontSize: "0.75rem",
+            },
+          }}
+        >
+          <FavoriteBorder className="cartIcon" />
+        </Badge>
+      </Link>
 
-      <button className="cartBtn" onClick={addItemToWishlist}>
-        Wishlist
-      </button>
+      <Link to="/wishlist">
+        <button className="cartBtn">Wishlist</button>
+      </Link>
     </div>
   );
 };

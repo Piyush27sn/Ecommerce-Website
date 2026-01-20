@@ -7,6 +7,8 @@ import { CartContext } from "../Cart/cartContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SortButton } from "./sortButton";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { WishlistContext } from "../Wishlist/wishlistContext";
 
 export const ListingProducts = ({ filterProducts }) => {
   const [products, setProducts] = useState([]);
@@ -32,6 +34,8 @@ export const ListingProducts = ({ filterProducts }) => {
 
   const { addToCart } = useContext(CartContext);
   console.log("Context addToCart:", addToCart);
+
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
 
   const navigate = useNavigate();
 
@@ -105,6 +109,17 @@ export const ListingProducts = ({ filterProducts }) => {
             >
               View more
             </button>
+            {isInWishlist(product._id) ? (
+              <Favorite 
+                style={{ color: "red", cursor: "pointer" }}
+                onClick={() => removeFromWishlist(product._id)}
+              />
+            ) : (
+              <FavoriteBorder 
+                style={{ cursor: "pointer "}}
+                onClick={() => addToWishlist(product)}
+              />
+            )}
           </div>
         </div>
       ))}

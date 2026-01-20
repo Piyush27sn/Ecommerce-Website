@@ -52,12 +52,13 @@
 .helpC1 {
     height: 0.6rem;
     font-weight: bold;
-    color: #ff6600;
+    color: #ffffff;
 }
 
 .helpC2 {
+    color: #ffffff;
     height: 0.4rem;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .dropdown-menu li {

@@ -37,7 +37,7 @@ export const CartPage = () => {
 
                     <div className="col-lg-8 col-sm-12">
                       <h4>{item.name}</h4>
-                      <p>${item.price}</p>
+                      <p>₹{item.price}</p>
                       <div className="d-flex gap-5">
                         <Box display="flex" alignItems="center" gap={1}>
                           <Button

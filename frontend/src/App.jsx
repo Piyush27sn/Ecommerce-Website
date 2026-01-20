@@ -16,6 +16,8 @@ import { CartProvider } from './pages/Cart/cartContext.jsx';
 import { Login } from './components/login-logout/login.jsx';
 import { PrivateRoute } from './components/privateRoute.jsx';
 import { Register } from './components/login-logout/register.jsx';
+import { Wishlist } from './pages/Wishlist/wishlist.jsx';
+import { WishlistProvider } from './pages/Wishlist/wishlistContext.jsx';
 
 
 function Layout() {
@@ -40,6 +42,7 @@ function Layout() {
               </PrivateRoute>
             }
           />
+          <Route path='/wishlist' element={<Wishlist />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
@@ -64,6 +67,27 @@ function Layout() {
           </div>
         </div>
       </div>
+
+      <div className='toast-container position-fixed bottom-0 end-0 p-3'>
+        <div 
+          id='wishlistToast'
+          className='toast align-items-center toastNotif'
+          role='alert'
+          aria-live='assertive'
+          aria-atomic='true'
+        >
+          <div className='d-flex'>
+            <div id='wishlistToastBody' className='toast-body'>Item added to wishlist!</div>
+            <button
+              type='button'
+              className='btn-close me-2 m-auto'
+              data-bs-dismiss='toast'
+              aria-label='Close'
+            ></button>
+          </div>
+        </div>
+      </div>
+
     </>
   );
 }
@@ -71,11 +95,14 @@ function Layout() {
 function App() {
   return (
     <>
-    <CartProvider>
+    
+    <WishlistProvider>
+      <CartProvider>
       <Router>
         <Layout />
       </Router>
     </CartProvider>
+    </WishlistProvider>
     </>
   )
 }

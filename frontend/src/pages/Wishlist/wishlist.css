@@ -1,0 +1,45 @@
+.wishlistMain {
+    background-color: whitesmoke;
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 1rem;
+}
+
+.wishlistMain h2 {
+    text-align: center;
+}
+
+.wishlistCard {
+    background-color: white;
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 1rem;
+
+    margin-left: 8rem;
+    margin-right: 8rem;
+}
+
+.wishlistCard img {
+    height: 6rem;
+}
+
+.wishlistEmpty {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wishlistEmpty h1 {
+    color: rgb(206, 205, 205);
+    font-weight: 700 !important;
+}
+
+.wishlistEmpty p {
+    color: gray;
+}

@@ -55,18 +55,18 @@ export const HeaderBottom = () => {
                       </button>
                     </li>
                     <li>
-                      <button>
-                        <Link to="/about" className="navBottomLink">
-                          About
-                        </Link>
-                      </button>
-                    </li>
-                    <li>
                       <Link to='/listing' className="navBottomLink">
                         <button>
                           Shop
                         </button>
                       </Link>
+                    </li>
+                    <li>
+                      <button>
+                        <Link to="/about" className="navBottomLink">
+                          About
+                        </Link>
+                      </button>
                     </li>
                     <li>
                       <div className="dropdown">
