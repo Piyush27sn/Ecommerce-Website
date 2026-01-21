@@ -29,5 +29,10 @@ app.use("/api/auth", require("./routes/auth"));
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
+
+const categoryRoutes = require("./routes/categoryRoute");
+app.use("/api", categoryRoutes);
+
+
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

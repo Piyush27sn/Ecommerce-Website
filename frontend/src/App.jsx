@@ -18,6 +18,7 @@ import { PrivateRoute } from './components/privateRoute.jsx';
 import { Register } from './components/login-logout/register.jsx';
 import { Wishlist } from './pages/Wishlist/wishlist.jsx';
 import { WishlistProvider } from './pages/Wishlist/wishlistContext.jsx';
+import { HomeSliderCategoryPage } from './pages/Home/homeSliderCategoryPage.jsx';
 
 
 function Layout() {
@@ -45,6 +46,7 @@ function Layout() {
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path='/category/:categoryName' element={<HomeSliderCategoryPage />} />
         </Routes>
       {!hideHeaderFooter && <Footer />}
 

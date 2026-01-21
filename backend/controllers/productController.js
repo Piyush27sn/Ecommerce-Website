@@ -126,3 +126,5 @@ exports.deleteProduct = async (req, res) => {
     return errorResponse(res, 500, "Server error");
   }
 };
+
+

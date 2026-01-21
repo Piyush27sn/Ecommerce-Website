@@ -1,13 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import { CartContext } from "../Cart/cartContext";
-
 import "./homePopularProductCard.css";
 import { StarRating } from "./starRating";
-import { TurnedInSharp } from "@mui/icons-material";
+import { Favorite, FavoriteBorder, TurnedInSharp } from "@mui/icons-material";
+import { WishlistContext } from "../Wishlist/wishlistContext";
+import { useNavigate } from "react-router-dom";
+
 
 export const HomePopularProductCard = () => {
   const [products, setProducts] = useState([]);
   const { addToCart } = useContext(CartContext);
+  const { addToWishlist, removeFromWishlist, isInWishlist } =
+    useContext(WishlistContext);
+
+  const navigate = useNavigate();
+
+  const handleViewMore = (product) => {
+    navigate(`/details/${product._id}`);
+  };
 
   useEffect(() => {
     fetch("http://localhost:5000/api/products/popular")
@@ -35,10 +45,12 @@ export const HomePopularProductCard = () => {
                   <img
                     src={`http://localhost:5000/images/${product.image}`}
                     alt={product.name}
+                    onClick={() => handleViewMore(product)}
+                    className="cursorPointer"
                   />
                 </div>
                 <p>{product.category}</p>
-                <h3>{product.name}</h3>
+                <h3 className="cursorPointer" onClick={() => handleViewMore(product)}>{product.name}</h3>
                 <StarRating rating={product.ratingP} />
                 <div className="d-flex">
                   <h6 className="discountedPrice">
@@ -46,7 +58,28 @@ export const HomePopularProductCard = () => {
                   </h6>
                   <h6 className="originalPrice">₹{product.price}</h6>
                 </div>
-                <button className="cardBtn" onClick={() => addToCart(product)} >Add to cart</button>
+                <button className="cardBtn" onClick={() => addToCart(product)}>
+                  Add to cart
+                </button>
+                {isInWishlist(product._id) ? (
+                  <Favorite
+                    style={{
+                      color: "red",
+                      cursor: "pointer",
+                      marginLeft: "1rem",
+                    }}
+                    onClick={() => removeFromWishlist(product._id)}
+                  />
+                ) : (
+                  <FavoriteBorder
+                    style={{
+                      cursor: "pointer ",
+                      color: "gray",
+                      marginLeft: "1rem",
+                    }}
+                    onClick={() => addToWishlist(product)}
+                  />
+                )}
               </div>
             </div>
           ))

@@ -41,7 +41,6 @@ export const ListingProducts = ({ filterProducts }) => {
 
   const handleViewMore = (product) => {
     navigate(`/details/${product._id}`);
-
   };
 
 
@@ -74,7 +73,8 @@ export const ListingProducts = ({ filterProducts }) => {
 
     <div className="row">
       {sortedProducts.map((product) => (
-        <div key={product._id} className="col-lg-4 col-md-6 col-sm-12 g-3">
+        
+        <div key={product._id} className="listingMain col-lg-4 col-md-6 col-sm-12 g-3">
           <div className="popularCard">
             {product.discount > 0 && (
               <>
@@ -85,14 +85,14 @@ export const ListingProducts = ({ filterProducts }) => {
                 </h6>
               </>
             )}
-            <div className="d-flex justify-content-center pb-2">
+            <div className="cursorPointer d-flex justify-content-center pb-2"  onClick={() => handleViewMore(product)}>
               <img
                 src={`http://localhost:5000/images/${product.image}`}
                 alt={product.name}
               />
             </div>
             <p>{product.category}</p>
-            <h3>{product.name}</h3>
+            <h3 className="cursorPointer" onClick={() => handleViewMore(product)}>{product.name}</h3>
             <StarRating rating={product.ratingP} />
             <div className="d-flex">
               <h6 className="discountedPrice">
@@ -103,25 +103,20 @@ export const ListingProducts = ({ filterProducts }) => {
             <button className="cardBtn" onClick={() => addToCart(product)}>
               Add to cart
             </button>
-            <button
-              className="cardBtn ms-2"
-              onClick={() => handleViewMore(product)}
-            >
-              View more
-            </button>
             {isInWishlist(product._id) ? (
               <Favorite 
-                style={{ color: "red", cursor: "pointer" }}
+                style={{ color: "red", cursor: "pointer", marginLeft: "1rem" }}
                 onClick={() => removeFromWishlist(product._id)}
               />
             ) : (
               <FavoriteBorder 
-                style={{ cursor: "pointer "}}
+                style={{ cursor: "pointer ", color: "gray", marginLeft: "1rem"}}
                 onClick={() => addToWishlist(product)}
               />
             )}
           </div>
         </div>
+        
       ))}
     </div>
   </div>

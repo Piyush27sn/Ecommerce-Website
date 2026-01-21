@@ -1,3 +1,11 @@
+.listingMain{
+  cursor: default;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
 .popularCard {
   border: 1px solid #cfcece;
   border-radius: 8px;

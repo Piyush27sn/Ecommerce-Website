@@ -3,6 +3,8 @@
   border-radius: 8px;
   padding: 1rem;
   position: relative;
+
+  cursor: default;
 }
 
 .popularCard img {
@@ -54,4 +56,8 @@
   border-radius: 5px;
 
   padding: 4px 6px;
+}
+
+.cursorPointer {
+  cursor: pointer;
 }
