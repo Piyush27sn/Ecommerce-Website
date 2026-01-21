@@ -5,6 +5,7 @@ import "./headerBottom.css";
 import { CategoryOutlined } from "@mui/icons-material";
 import { HeadphonesOutlined } from "@mui/icons-material";
 import megaMenu from "../../assets/images/megaMenu.webp";
+import { Dropdown } from "react-bootstrap";
 
 export const HeaderBottom = () => {
   return (
@@ -13,18 +14,12 @@ export const HeaderBottom = () => {
         <div className="container-fluid">
           <div className="row d-flex justify-content-center">
             <div className="col-lg-2 col-12">
-              <div className="dropdown">
-                <button
-                  className="dropdown-toggle navBottomBtn"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+              <div className="">
+                <Link to='/listing'>
+                <button className="navBottomBtn">
                   Browse All Categories
                 </button>
-                <ul className="dropdown-menu">
-                  <li className="dropdown-item">one</li>
-                  <li className="dropdown-item">two</li>
-                </ul>
+                </Link>
               </div>
             </div>
 
@@ -55,10 +50,8 @@ export const HeaderBottom = () => {
                       </button>
                     </li>
                     <li>
-                      <Link to='/listing' className="navBottomLink">
-                        <button>
-                          Shop
-                        </button>
+                      <Link to="/listing" className="navBottomLink">
+                        <button>Shop</button>
                       </Link>
                     </li>
                     <li>
@@ -69,135 +62,159 @@ export const HeaderBottom = () => {
                       </button>
                     </li>
                     <li>
-                      <div className="dropdown">
-                        <button
-                          className="dropdown-toggle"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          className="text-black"
+                          variant="secondary"
                         >
                           Vendors
-                        </button>
-                        <ul className="dropdown-menu">
-                          <li className="dropdown-item">one</li>
-                          <li className="dropdown-item">two</li>
-                        </ul>
-                      </div>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item>One</Dropdown.Item>
+                          <Dropdown.Item>Two</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </li>
                     <li className="nav-item dropdown megaMenu position-static">
-  <button
-    className="nav-link dropdown-toggle"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    Mega Menu
-  </button>
-
-  <div className="dropdown-menu w-100 mt-0 border-0 rounded-0">
-    <div className="container-fluid bg-light py-4">
-      <div className="row">
-        {/* Fruit & Vegetables */}
-        <div className="col-12 col-md-6 col-lg-3 mb-3">
-          <h5>Fruit & Vegetables</h5>
-          <Link className="dropdown-item" to="#">Fresh Vegetables</Link>
-          <Link className="dropdown-item" to="#">Fresh Fruits</Link>
-          <Link className="dropdown-item" to="#">Herbs & Seasonings</Link>
-          <Link className="dropdown-item" to="#">Cuts & Sprouts</Link>
-          <Link className="dropdown-item" to="#">Exotic Fruits & Veggies</Link>
-          <Link className="dropdown-item" to="#">Packaged Produce</Link>
-        </div>
-
-        {/* Breakfast & Dairy */}
-        <div className="col-12 col-md-6 col-lg-3 mb-3">
-          <h5>Breakfast & Dairy</h5>
-          <Link className="dropdown-item" to="#">Milk & Flavoured Milk</Link>
-          <Link className="dropdown-item" to="#">Butter and Margarine</Link>
-          <Link className="dropdown-item" to="#">Eggs Substitutes</Link>
-          <Link className="dropdown-item" to="#">Marmalades</Link>
-          <Link className="dropdown-item" to="#">Sour Cream</Link>
-          <Link className="dropdown-item" to="#">Cheese</Link>
-        </div>
-
-        {/* Meat & Seafood */}
-        <div className="col-12 col-md-6 col-lg-3 mb-3">
-          <h5>Meat & Seafood</h5>
-          <Link className="dropdown-item" to="#">Breakfast Sausage</Link>
-          <Link className="dropdown-item" to="#">Dinner Sausage</Link>
-          <Link className="dropdown-item" to="#">Chicken</Link>
-          <Link className="dropdown-item" to="#">Sliced Deli Meat</Link>
-          <Link className="dropdown-item" to="#">Wild Caught Fillets</Link>
-          <Link className="dropdown-item" to="#">Crab and Shellfish</Link>
-        </div>
-
-        {/* Image */}
-        <div className="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center">
-          <img src={megaMenu} alt="logo" className="img-fluid" />
-        </div>
-      </div>
-    </div>
-  </div>
-</li>
-                    <li>
-                      <div className="dropdown">
-                        <button
-                          className="dropdown-toggle"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
+                      <Dropdown className="megaMenu position-static">
+                        <Dropdown.Toggle
+                          variant="link"
+                          className="nav-link dropdown-toggle"
+                          id="megaMenuDropdown"
                         >
-                          Blog
-                        </button>
-                        <ul className="dropdown-menu">
-                          <li className="dropdown-item">one</li>
-                          <li className="dropdown-item">two</li>
-                        </ul>
-                      </div>
+                          Mega Menu
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu className="w-100 mt-0 border-0 rounded-0">
+                          <div className="container-fluid bg-light py-4">
+                            <div className="row">
+                              {/* Fruit & Vegetables */}
+                              <div className="col-12 col-md-6 col-lg-3 mb-3">
+                                <h5>Fruit & Vegetables</h5>
+                                <Link className="dropdown-item" to="#">
+                                  Fresh Vegetables
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Fresh Fruits
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Herbs & Seasonings
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Cuts & Sprouts
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Exotic Fruits & Veggies
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Packaged Produce
+                                </Link>
+                              </div>
+                              {/* Breakfast & Dairy */}
+                              <div className="col-12 col-md-6 col-lg-3 mb-3">
+                                <h5>Breakfast & Dairy</h5>
+                                <Link className="dropdown-item" to="#">
+                                  Milk & Flavoured Milk
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Butter and Margarine
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Eggs Substitutes
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Marmalades
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Sour Cream
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Cheese
+                                </Link>
+                              </div>
+
+                              {/* Meat & Seafood */}
+                              <div className="col-12 col-md-6 col-lg-3 mb-3">
+                                <h5>Meat & Seafood</h5>
+                                <Link className="dropdown-item" to="#">
+                                  Breakfast Sausage
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Dinner Sausage
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Chicken
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Sliced Deli Meat
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Wild Caught Fillets
+                                </Link>
+                                <Link className="dropdown-item" to="#">
+                                  Crab and Shellfish
+                                </Link>
+                              </div>
+                              {/* Image */}
+                              <div className="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center">
+                                <img
+                                  src={megaMenu}
+                                  alt="logo"
+                                  className="img-fluid"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </li>
                     <li>
-                      <div className="dropdown pages">
-                        <button
-                          className="dropdown-toggle"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
+                      <button>
+                        <Link to="/blogs" className="navBottomLink">
+                          Blogs
+                        </Link>
+                      </button>
+                    </li>
+                    <li>
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          className="text-black"
+                          variant="secondary"
                         >
                           Pages
-                        </button>
-                        <ul className="dropdown-menu px-2">
-                          <li className="dropdown-item">About Us</li>
-                          <li className="dropdown-item">Contact</li>
-                          <li className="dropdown-item">My Account</li>
-                          <li className="dropdown-item">Login</li>
-                          <li className="dropdown-item">Register</li>
-                          <li className="dropdown-item">Forgot Password</li>
-                          <li className="dropdown-item">Reset Password</li>
-                          <li className="dropdown-item">Purchase Guide</li>
-                          <li className="dropdown-item">Privacy Policy</li>
-                          <li className="dropdown-item">Terms of Service</li>
-                          <li className="dropdown-item">404 Page</li>
-                        </ul>
-                      </div>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item>One</Dropdown.Item>
+                          <Dropdown.Item>Two</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </li>
                     <li>
-                      <button>Contact</button>
+                      <button>
+                        <Link to="/contact-us" className="navBottomLink">
+                          Contact
+                        </Link>
+                      </button>
                     </li>
                   </ul>
                 </div>
               </div>
             </nav>
 
-
             <div className="col-lg-2 col-12 helpC">
-              <div className="container">
+              <div className="container helpBtn">
                 <div className="row">
-                  <div className="col-2 me-0 mt-1">
+                  <div className="col-2">
                     <HeadphonesOutlined className="supportIcon" />
                   </div>
                   <div className="col-10 ms-0 ps-0">
                     <div className="container">
                       <div className="row">
                         <div className="col-12 helpC1">
-                          <p>1800 - 990</p>
+                          <h6>1800 - 990</h6>
                         </div>
                         <div className="col-12 helpC2 pt-2">
-                          <p>24/7 Support Center</p>
+                          <h6>24/7 Support Center</h6>
                         </div>
                       </div>
                     </div>

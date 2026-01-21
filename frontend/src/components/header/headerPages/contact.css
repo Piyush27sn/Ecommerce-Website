@@ -1,0 +1,16 @@
+.contactMain {
+    margin-bottom: 2rem;
+}
+
+.contactMain h1 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    font-weight: 700;
+}
+
+.contactIcon {
+    font-size: 2rem !important;
+    margin-left: 0.175rem;
+    margin-right: 0.175rem;
+}

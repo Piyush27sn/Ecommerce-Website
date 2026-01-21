@@ -40,7 +40,7 @@ export const Header = () => {
 
         <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
+            <a className="navbar-brand">
               <img src={logo} className="navLogo" />
             </a>
             <button

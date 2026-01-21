@@ -1,7 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import './App.css'
+import './App.css';
 
 import { Header } from './components/header/header.jsx'
 import { Footer } from './components/footer/footer.jsx';
@@ -19,6 +17,12 @@ import { Register } from './components/login-logout/register.jsx';
 import { Wishlist } from './pages/Wishlist/wishlist.jsx';
 import { WishlistProvider } from './pages/Wishlist/wishlistContext.jsx';
 import { HomeSliderCategoryPage } from './pages/Home/homeSliderCategoryPage.jsx';
+import { Blogs } from './components/header/headerPages/Blogs.jsx';
+import { Blog1 } from './components/header/headerPages/blog1.jsx';
+import { Blog2 } from './components/header/headerPages/blog2.jsx';
+import { Blog3 } from './components/header/headerPages/blog3.jsx';
+import { Blog4 } from './components/header/headerPages/blog4.jsx';
+import { Contact } from './components/header/headerPages/contact.jsx';
 
 
 function Layout() {
@@ -47,6 +51,13 @@ function Layout() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path='/category/:categoryName' element={<HomeSliderCategoryPage />} />
+
+          <Route path='/blogs' element={<Blogs />} />
+          <Route path='/blogs/blog-1' element={<Blog1 />} />
+          <Route path='/blogs/blog-2' element={<Blog2 />} />
+          <Route path='/blogs/blog-3' element={<Blog3 />} />
+          <Route path='/blogs/blog-4' element={<Blog4 />} />
+          <Route path='/contact-us' element={<Contact />} />
         </Routes>
       {!hideHeaderFooter && <Footer />}
 

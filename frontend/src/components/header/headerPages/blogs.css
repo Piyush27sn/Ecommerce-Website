@@ -1,0 +1,35 @@
+.blogsPage {
+    margin-bottom: 2rem;
+}
+
+.blogsPage h1 {
+    font-weight: 700;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.blogsPage ul {
+    list-style: numeric;
+    font-weight: bold;
+}
+
+
+.col-4 img {
+    border-radius: 5px;
+}
+
+.blogMain {
+    padding-top: 1rem;
+}
+
+.blogMain h1 {
+    padding-bottom: 1rem;
+}
+
+.blogMain ul {
+    list-style: none;
+}
+
+.textBold {
+    font-weight: bold;
+}
