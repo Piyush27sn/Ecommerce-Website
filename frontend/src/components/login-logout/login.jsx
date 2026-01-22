@@ -3,13 +3,17 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../pages/Cart/cartContext";
 import "./log.css";
+import { WishlistContext } from "../../pages/Wishlist/wishlistContext";
 
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { loadCart, setToken } = useContext(CartContext);
+  // const { loadCart, setToken } = useContext(CartContext);
+  const { loadCart, setToken: setCartToken } = useContext(CartContext);
+  const { setToken: setWishlistToken, refreshWishlist } = useContext(WishlistContext);
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,9 +30,14 @@ export const Login = () => {
       if (data.token) {
         localStorage.setItem("token", data.token);
         console.log("Login successful: ", data);
-        setToken(data.token);
+        // setToken(data.token);
+        setCartToken(data.token);
+        setWishlistToken(data.token);
+
         loadCart();
-        navigate("/cart");
+        refreshWishlist();
+
+        navigate("/");
       } else {
         console.error("Login failed: ", data.error);
       }

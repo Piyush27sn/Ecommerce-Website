@@ -2,9 +2,10 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
 
-export const StarRating = ({rating}) => {
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.5;
+export const StarRating = ({ rating }) => {
+  const safeRating = typeof rating === "number" && rating >= 0 ? rating : 0;
+  const fullStars = Math.floor(safeRating);
+  const hasHalfStar = safeRating % 1 >= 0.5;
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   return (
@@ -27,7 +28,7 @@ export const StarRating = ({rating}) => {
           style={{ opacity: 0.3 }}
         />
       ))}
-      <span className="ms-2">({rating.toFixed(1)})</span>
+      <span className="ms-2">({safeRating.toFixed(1)})</span>
     </div>
   );
 };

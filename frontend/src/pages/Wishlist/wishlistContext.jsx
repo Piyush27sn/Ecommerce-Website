@@ -1,58 +1,136 @@
 import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
+import { Toast } from "bootstrap";
 
 export const WishlistContext = createContext([]);
 
 export const WishlistProvider = ({ children }) => {
-  // Load wishlist from localStorage on mount
-  const [wishlist, setWishlist] = useState(
-    JSON.parse(localStorage.getItem("wishlist") || "[]")
-  );
+  const [wishlist, setWishlist] = useState([]);
+  const BASE_URL = "http://localhost:5000";
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
-  // Keep localStorage in sync whenever wishlist changes
+  // load wishlist from backend when user logs in
   useEffect(() => {
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  }, [wishlist]);
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios
+        .get(`${BASE_URL}/api/wishlist`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => setWishlist(res.data.products || []))
+        .catch((err) => {
+          console.error("Error fetching wishlist: ", err);
+          setWishlist([]);
+        });
+    } else {
+      setWishlist([]); // clear wishlist if not logged in
+    }
+  }, [token]);
 
   // Add product to wishlist
-  const addToWishlist = (product) => {
-    const exists = wishlist.some((item) => item._id === product._id);
-    if (exists) {
-      showToast(`${product.name} is already in wishlist`);
+  const addToWishlist = async (productId, productName) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please log in to add to wishlist");
       return;
     }
 
-    const updatedWishlist = [...wishlist, product];
-    setWishlist(updatedWishlist);
-    showToast(`${product.name} added to wishlist!`);
+    // fallback if productName not provided
+    if (!productName) {
+      const product = wishlist.find(
+        (item) =>
+          (typeof item.productId === "object"
+            ? item.productId._id
+            : item.productId) === productId,
+      );
+      productName = product?.productId?.name || "Product";
+    }
+
+    if (
+      wishlist.some((item) => {
+        const id =
+          typeof item.productId === "object"
+            ? item.productId._id
+            : item.productId;
+        return id?.toString() === productId.toString();
+      })
+    ) {
+      showToast(`${productName} is already in your wishlist!`);
+      return;
+    }
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/api/wishlist`,
+        { productId },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+      setWishlist(res.data.products || []);
+      showToast(`${productName} added to wishlist!`);
+    } catch (err) {
+      console.error("Error adding to wishlist: ", err);
+      showToast("Failed to add to wishlist");
+    }
   };
 
   // Remove product from wishlist
-  const removeFromWishlist = (productId) => {
-    const updatedWishlist = wishlist.filter((item) => item._id !== productId);
-    setWishlist(updatedWishlist);
-    showToast(`Removed from wishlist`);
+  const removeFromWishlist = async (productId) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Please log in to remove from wishlist");
+      return;
+    }
+    try {
+      const res = await axios.delete(`${BASE_URL}/api/wishlist/${productId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setWishlist(res.data.products || []);
+      showToast("Removed from wishlist");
+    } catch (err) {
+      console.error("Error removing from wishlist:", err);
+    }
   };
 
   // Check if product is in wishlist
   const isInWishlist = (productId) => {
-    return wishlist.some((item) => item._id === productId);
+    return wishlist.some((item) => {
+      const id =
+        typeof item.productId === "object"
+          ? item.productId._id
+          : item.productId;
+      return id?.toString() === productId.toString();
+    });
   };
 
   // Helper: show toast with dynamic message
   const showToast = (message) => {
     const toastBody = document.getElementById("wishlistToastBody");
-    if (toastBody) toastBody.textContent = `${product.name} removed from wishlist`;
+    if (toastBody) toastBody.textContent = message;
 
     const toastEl = document.getElementById("wishlistToast");
     if (toastEl) {
-      const toast = new window.bootstrap.Toast(toastEl);
+      const toast = new Toast(toastEl);
       toast.show();
+    }
+  };
+
+  const refreshWishlist = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const res = await axios.get(`${BASE_URL}/api/wishlist`);
+      setWishlist(res.data.products || []);
     }
   };
 
   return (
     <WishlistContext.Provider
-      value={{ wishlist, addToWishlist, removeFromWishlist, isInWishlist }}
+      value={{
+        wishlist,
+        addToWishlist,
+        removeFromWishlist,
+        isInWishlist,
+        refreshWishlist,
+        setToken,
+      }}
     >
       {children}
     </WishlistContext.Provider>

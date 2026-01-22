@@ -25,6 +25,7 @@ app.use("/api/products", productRoutes);
 app.use("/images", express.static("public/images"));
 app.use("/api/cart", require("./routes/cartRoutes"));
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api", require("./routes/wishlistRoute"));
 
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));

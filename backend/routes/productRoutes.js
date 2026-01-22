@@ -9,11 +9,11 @@ const {
   deleteProduct,
 } = require("../controllers/productController");
 
+
+
 // CRUD routes
 router.post("/", createProduct);
-router.get("/", getProducts); // ✅ search logic will live inside controller
-
-
+router.get("/", getProducts); // search logic will live inside controller
 
 
 router.get("/popular", async (req, res) => {
