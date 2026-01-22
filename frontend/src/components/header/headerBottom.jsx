@@ -70,8 +70,12 @@ export const HeaderBottom = () => {
                           Vendors
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                          <Dropdown.Item>One</Dropdown.Item>
-                          <Dropdown.Item>Two</Dropdown.Item>
+                          <Dropdown.Item>Vendor - One</Dropdown.Item>
+                          <Dropdown.Item>Vendor - Two</Dropdown.Item>
+                          <Dropdown.Item>Vendor - Three</Dropdown.Item>
+                          <Dropdown.Item>Vendor - Four</Dropdown.Item>
+                          <Dropdown.Item>Vendor - Six</Dropdown.Item>
+                          <Dropdown.Item>Vendor - Seven</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                     </li>
@@ -184,8 +188,14 @@ export const HeaderBottom = () => {
                           Pages
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                          <Dropdown.Item>One</Dropdown.Item>
-                          <Dropdown.Item>Two</Dropdown.Item>
+                          <Dropdown.Item as={Link} to='/account'>Account</Dropdown.Item>
+                          <Dropdown.Item as={Link} to='/listing'>Shop</Dropdown.Item>
+                          <Dropdown.Item as={Link} to='/cart'>Cart</Dropdown.Item>
+                          <Dropdown.Item as={Link} to='/wishlist'>Wishlist</Dropdown.Item>
+                          <Dropdown.Item as={Link} to='/blogs'>Blogs</Dropdown.Item>
+                          <Dropdown.Item as={Link} to='/about'>About</Dropdown.Item>
+                          <Dropdown.Item as={Link} to='/contact-us'>Contact</Dropdown.Item>
+                          <Dropdown.Item as={Link} to='/404-page-not-found'>Page not found</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                     </li>
@@ -209,6 +219,7 @@ export const HeaderBottom = () => {
                   </div>
                   <div className="col-10 ms-0 ps-0">
                     <div className="container">
+                      <Link style={{textDecoration: 'none'}} to='/contact-us'>
                       <div className="row">
                         <div className="col-12 helpC1">
                           <h6>1800 - 990</h6>
@@ -217,6 +228,7 @@ export const HeaderBottom = () => {
                           <h6>24/7 Support Center</h6>
                         </div>
                       </div>
+                      </Link>
                     </div>
                   </div>
                 </div>

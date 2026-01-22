@@ -2,6 +2,10 @@
     border: 1px solid grey;
     padding: 6px 10px;
     border-radius: 5px;
+    width: 8.4rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .locationIcon {

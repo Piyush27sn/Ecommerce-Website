@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../pages/Cart/cartContext";
 import "./log.css";
 import { WishlistContext } from "../../pages/Wishlist/wishlistContext";
+import { AccountContext } from "../../pages/Account/accountContext";
 
 
 export const Login = () => {
@@ -13,6 +14,7 @@ export const Login = () => {
   // const { loadCart, setToken } = useContext(CartContext);
   const { loadCart, setToken: setCartToken } = useContext(CartContext);
   const { setToken: setWishlistToken, refreshWishlist } = useContext(WishlistContext);
+  const { setUser } = useContext(AccountContext);
 
 
   const handleLogin = async (e) => {
@@ -30,12 +32,14 @@ export const Login = () => {
       if (data.token) {
         localStorage.setItem("token", data.token);
         console.log("Login successful: ", data);
-        // setToken(data.token);
+        
         setCartToken(data.token);
         setWishlistToken(data.token);
 
         loadCart();
         refreshWishlist();
+
+        setUser(data.user);
 
         navigate("/");
       } else {

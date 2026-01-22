@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import "../header/header.css";
+// import "../header/header.css";
 import "../header/headerSearch.css";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -43,6 +43,7 @@ export const HeaderSearch = () => {
   return (
     <div className='headerSearch'>
         <form className='d-flex' role='search'>
+            <div className='searchBox'>
             <input 
                 className='form-control me-2'
                 type='search'
@@ -51,9 +52,11 @@ export const HeaderSearch = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className='searchBtn' type='submit'>
-                <SearchIcon />
-            </button>
+            <SearchIcon  className='searchIcon' />
+            </div>
+            {/* <button className='searchBtn' type='submit'>
+                
+            </button> */}
         </form>
 
         {results.length > 0 && (

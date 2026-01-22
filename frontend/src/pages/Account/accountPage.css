@@ -1,0 +1,24 @@
+.accountPage h1 {
+    color: #ff6600;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.accountCard {
+    height: 100%;
+    padding: 1rem;
+}
+
+.accountCard h5 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.accountCard p {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.accountBold {
+    font-weight: bold;
+}

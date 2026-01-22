@@ -37,3 +37,24 @@
 .headerSearchItem:hover {
     background-color: whitesmoke;
 }
+
+
+.searchBox {
+  position: relative;
+  display: inline-block;
+}
+
+.searchBox input {
+  padding-left: 15px;
+  height: 40px;
+  width: 250px;
+}
+
+.searchBox .searchIcon {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff6600;
+  pointer-events: none;
+}

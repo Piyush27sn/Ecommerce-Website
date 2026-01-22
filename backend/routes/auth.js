@@ -2,7 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-
+const authMiddleware = require("../middleware/auth");
 const router = express.Router();
 
 
@@ -93,5 +93,15 @@ router.post("/login", async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 });
+
+router.get("/profile", authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("name email");
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 
 module.exports = router;
