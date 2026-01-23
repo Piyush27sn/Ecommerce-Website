@@ -3,36 +3,40 @@ import "./cartPage.css";
 import { CartContext } from "./cartContext";
 import { Box, Button, Typography } from "@mui/material";
 
-
 export const CartPage = () => {
-  
-  const { cartItems, addToCart, updateQuantity, removeFromCart } = useContext(CartContext);
+  const { cartItems, addToCart, updateQuantity, removeFromCart } =
+    useContext(CartContext);
 
   const totalAmount = (cartItems || []).reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
 
   return (
     <div className="container pt-4 pb-5 cartMain">
-      { totalAmount != 0 && (
-        <h2 className="pt-2">Your Cart</h2>
-      )}
-      { !cartItems || cartItems.length === 0 ? (
+      {totalAmount != 0 && <h2 className="pt-2">My Cart</h2>}
+      {!cartItems || cartItems.length === 0 ? (
         <div className="cartEmpty">
           <h1>Your cart is empty</h1>
-          <p>To go back to home page, <a href="/">click here.</a></p>
+          <p>
+            To go back to home page, <a href="/">click here.</a>
+          </p>
         </div>
       ) : (
         <div className="row">
           {cartItems.map((item) => (
-            <div key={item.productId} className="col-lg-12 col-md-12 col-sm-12 g-3">
+            <div
+              key={item.productId}
+              className="col-lg-12 col-md-12 col-sm-12 g-3"
+            >
               <div className="cartCard d-flex justify-content-center">
                 <div className="container">
                   <div className="row">
-
                     <div className="col-lg-4 col-sm-12">
-                      <img src={`http://localhost:5000/images/${item.image}`} alt={item.name} />
+                      <img
+                        src={`http://localhost:5000/images/${item.image}`}
+                        alt={item.name}
+                      />
                     </div>
 
                     <div className="col-lg-8 col-sm-12">
@@ -43,7 +47,9 @@ export const CartPage = () => {
                           <Button
                             variant="contained"
                             className="cartPageBtn"
-                            onClick={() => updateQuantity(item.productId, item.quantity - 1)}
+                            onClick={() =>
+                              updateQuantity(item.productId, item.quantity - 1)
+                            }
                             sx={{
                               minWidth: "32px",
                               width: "32px",
@@ -61,7 +67,9 @@ export const CartPage = () => {
                           <Button
                             variant="contained"
                             className="cartPageBtn"
-                            onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                            onClick={() =>
+                              updateQuantity(item.productId, item.quantity + 1)
+                            }
                             sx={{
                               minWidth: "32px",
                               width: "32px",
@@ -82,7 +90,6 @@ export const CartPage = () => {
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>

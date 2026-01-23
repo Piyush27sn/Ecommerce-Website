@@ -8,6 +8,7 @@ import four from "../../assets/images/listing/baking.png";
 import five from "../../assets/images/listing/fruit.png";
 
 import Badge from "react-bootstrap/Badge";
+import { Link } from 'react-router-dom';
 
 export const Sidebar1 = () => {
   return (
@@ -16,37 +17,37 @@ export const Sidebar1 = () => {
         <ul>
           <li>
             <button className="sidebarCatBtnWrapper">
-              <img src={one} alt="Milk" />
-              <span className="sidebarCatBtn">Milk & Dairies</span>
-              <Badge className="sidebarCatBtnBadge">4</Badge>
+              <Link className='sidebarLink' to='/category/Cake%20&%20Milk'>Cake & Milk</Link>
             </button>
           </li>
           <li>
             <button className="sidebarCatBtnWrapper">
-              <img src={two} />
-              <span className="sidebarCatBtn">Clothing</span>
-              <Badge className="sidebarCatBtnBadge">4</Badge>
+              <Link className='sidebarLink' to='/category/Coffee%20&%20Tea'>Coffee & Tea</Link>
             </button>
           </li>
           <li>
             <button className="sidebarCatBtnWrapper">
-              <img src={three} />
-              <span className="sidebarCatBtn">Pet Foods</span>
-              <Badge className="sidebarCatBtnBadge">11</Badge>
+              <Link className='sidebarLink' to='/category/Drinks'>Drinks</Link>
             </button>
           </li>
           <li>
             <button className="sidebarCatBtnWrapper">
-              <img src={four} />
-              <span className="sidebarCatBtn">Baking Material</span>
-              <Badge className="sidebarCatBtnBadge">4</Badge>
+              <Link className='sidebarLink' to='/category/Electronics'>Electronics</Link>
             </button>
           </li>
           <li>
             <button className="sidebarCatBtnWrapper">
-              <img src={five} />
-              <span className="sidebarCatBtn">Fresh Fruits</span>
-              <Badge className="sidebarCatBtnBadge">4</Badge>
+              <Link className='sidebarLink' to='/category/Kitchen'>Kitchen</Link>
+            </button>
+          </li>
+          <li>
+            <button className="sidebarCatBtnWrapper">
+              <Link className='sidebarLink' to='/category/Pet%20Food'>Pet Food</Link>
+            </button>
+          </li>
+          <li>
+            <button className="sidebarCatBtnWrapper">
+              <Link className='sidebarLink' to='/category/Shoes'>Shoes</Link>
             </button>
           </li>
         </ul>

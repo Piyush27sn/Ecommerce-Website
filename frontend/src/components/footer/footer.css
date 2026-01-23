@@ -29,3 +29,8 @@
 .footerLogo {
     width: 6rem;
 }
+
+.footerLink {
+    text-decoration: none;
+    color: black;
+}

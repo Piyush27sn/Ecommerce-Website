@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./homeSliderCategoryPage.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { CartContext } from "../Cart/cartContext";
 import { WishlistContext } from "../Wishlist/wishlistContext";
 import { Favorite, FavoriteBorder, TurnedInSharp } from "@mui/icons-material";
@@ -17,6 +17,8 @@ export const HomeSliderCategoryPage = () => {
 
   const { addToWishlist, removeFromWishlist, isInWishlist } =
     useContext(WishlistContext);
+
+  const navigate = useNavigate();
 
   const handleViewMore = (product) => {
     navigate(`/details/${product._id}`);
@@ -43,6 +45,7 @@ export const HomeSliderCategoryPage = () => {
       .catch((err) => console.error("Error fetching products:", err));
   }, [categoryName]);
 
+
   return (
     <div className="container">
       <h2 className="pt-3" style={{ color: "#ff6600" }}> '{categoryName}' products <span style={{ color: "gray", fontWeight: "normal" }}>({filteredProducts.length})</span> </h2>
@@ -64,7 +67,7 @@ export const HomeSliderCategoryPage = () => {
               )}
               <div
                 className="cursorPointer d-flex justify-content-center pb-2"
-                onClick={() => handleViewMore(product)}
+                onClick={() => handleViewMore(prod)}
               >
                 <img
                   src={`http://localhost:5000/images/${prod.image}`}

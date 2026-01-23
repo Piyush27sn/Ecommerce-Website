@@ -23,23 +23,21 @@
 }
 
 .sidebar1 .sidebarCatBtnWrapper:hover {
-  box-shadow: 0px 0px 10px rgb(191, 190, 190);
-  transition: all 0.3s;
+  background-color: #ff6600;
+  .sidebarLink {
+    color: white;
+  }
 }
 
 .sidebar1 ul li button {
-  background-color: rgb(238, 244, 250);
+  background-color: white;
   text-align: left;
 
   padding: 0.5rem;
   width: 100%;
 
-  border: 1px solid gray;
+  border: 1px solid black;
   border-radius: 5px;
-}
-
-.sidebar1 ul li img {
-  height: 16px;
 }
 
 .sidebarCatBtn {
@@ -59,10 +57,8 @@
   background-color: #fff;
 }
 
-.sidebarCatBtnBadge {
-  background-color: #ff6600 !important;
-  color: white;
-  border-radius: 15px;
-  padding: 6px 8px;
-  font-size: 0.75rem;
+.sidebarLink {
+  color: #ff6600;
+  font-weight: bold;
+  text-decoration: none;
 }

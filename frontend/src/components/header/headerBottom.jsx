@@ -89,74 +89,55 @@ export const HeaderBottom = () => {
                           Mega Menu
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu className="w-100 mt-0 border-0 rounded-0">
+                        <Dropdown.Menu className="megaMenuDropdown w-100 mt-0 border-0 rounded-0">
                           <div className="container-fluid bg-light py-4">
                             <div className="row">
                               {/* Fruit & Vegetables */}
                               <div className="col-12 col-md-6 col-lg-3 mb-3">
                                 <h5>Fruit & Vegetables</h5>
-                                <Link className="dropdown-item" to="#">
-                                  Fresh Vegetables
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a7290d">
+                                  Potatoes
                                 </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Fresh Fruits
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a72910">
+                                  Peach
                                 </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Herbs & Seasonings
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a72913">
+                                  Orange
                                 </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Cuts & Sprouts
-                                </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Exotic Fruits & Veggies
-                                </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Packaged Produce
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a7291b">
+                                  Spinach
                                 </Link>
                               </div>
                               {/* Breakfast & Dairy */}
                               <div className="col-12 col-md-6 col-lg-3 mb-3">
                                 <h5>Breakfast & Dairy</h5>
-                                <Link className="dropdown-item" to="#">
-                                  Milk & Flavoured Milk
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a72914">
+                                  Buffalo Milk
                                 </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Butter and Margarine
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a72915">
+                                  Cow Milk
                                 </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Eggs Substitutes
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a72911">
+                                  Britannia Cake
                                 </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Marmalades
-                                </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Sour Cream
-                                </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Cheese
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a7291d">
+                                  Chocolate Cake
                                 </Link>
                               </div>
-
-                              {/* Meat & Seafood */}
+                              {/* Coffee & Tea */}
                               <div className="col-12 col-md-6 col-lg-3 mb-3">
-                                <h5>Meat & Seafood</h5>
-                                <Link className="dropdown-item" to="#">
-                                  Breakfast Sausage
+                                <h5>Coffee & Tea</h5>
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a72912">
+                                  Ice Tea
                                 </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Dinner Sausage
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a72919">
+                                  Brown Tea
                                 </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Chicken
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a72920">
+                                  Green Tea
                                 </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Sliced Deli Meat
-                                </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Wild Caught Fillets
-                                </Link>
-                                <Link className="dropdown-item" to="#">
-                                  Crab and Shellfish
+                                <Link className="dropdown-item" to="/details/696fa9884773e85fc6a7291a">
+                                  Nescafe Coffee
                                 </Link>
                               </div>
                               {/* Image */}

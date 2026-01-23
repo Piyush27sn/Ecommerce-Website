@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { Dropdown } from "react-bootstrap";
 import "./sortButton.css";
+
 
 export const SortButton = ({ onSortChange }) => {
   const [selected, setSelected] = useState("Select Category");
@@ -11,50 +13,28 @@ export const SortButton = ({ onSortChange }) => {
 
   return (
     <div className="sortBtn">
-      <div className="dropdown">
-        <button
-          className="btn btn-outline-dark dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Sort by: {selected}
-        </button>
-        <ul className="dropdown-menu">
-          <li>
-            <button
-              className="dropdown-item"
-              onClick={() => handleSelect("Featured")}
-            >
-              Featured
-            </button>
-          </li>
-          <li>
-            <button
-              className="dropdown-item"
-              onClick={() => handleSelect("Price: Low to High")}
-            >
-              Price: Low to High
-            </button>
-          </li>
-          <li>
-            <button
-              className="dropdown-item"
-              onClick={() => handleSelect("Price: High to Low")}
-            >
-              Price: High to Low
-            </button>
-          </li>
-          <li>
-            <button
-              className="dropdown-item"
-              onClick={() => handleSelect("Rating")}
-            >
-              Rating
-            </button>
-          </li>
-        </ul>
-      </div>
+      <Dropdown>
+        <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+          Sort by: {selected || "All Items"}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => handleSelect("")}>
+            All Items
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => handleSelect("Featured")}>
+            Featured
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => handleSelect("Price: Low to High")}>
+            Price: Low to High
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => handleSelect("Price: High to Low")}>
+            Price: High to Low
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => handleSelect("Rating")}>
+            Rating
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
   );
 };
